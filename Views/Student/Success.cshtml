@@ -1,0 +1,16 @@
+@{
+    ViewData["Title"] = "Тіркелу сәтті аяқталды";
+}
+
+<div class="container success-page">
+    <div class="success-card">
+        <div class="success-icon">✓</div>
+        <span class="eyebrow dark">Тіркелу сәтті аяқталды</span>
+        <h1>Студенттік профиль жасалды</h1>
+        <p>@(TempData["SuccessMessage"] ?? "Профиліңіз сәтті тіркелді.")</p>
+        <div class="success-actions">
+            <a asp-controller="Student" asp-action="Students" class="btn btn-primary btn-register">Тіркелген студенттерді көру</a>
+            <a asp-controller="Student" asp-action="Index" class="btn btn-reset">Тағы бір студентті тіркеу</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+@model Student
+@{
+    ViewData["Title"] = "Студент туралы толық ақпарат";
+}
+
+<div class="container details-page">
+    <a asp-controller="Student" asp-action="Students" class="back-link">← Студенттер тізіміне оралу</a>
+    <article class="details-card">
+        <div class="details-header">
+            <div class="avatar large">@Model.FirstName.Substring(0, 1)@Model.LastName.Substring(0, 1)</div>
+            <div><span class="eyebrow dark">Студент профилі</span><h1>@Model.FirstName @Model.LastName</h1><p>@Model.Email</p></div>
+        </div>
+        <dl class="details-grid">
+            <div><dt>Жасы</dt><dd>@Model.Age</dd></div>
+            <div><dt>Факультет</dt><dd>@Model.Faculty</dd></div>
+            <div><dt>Оқу курсы</dt><dd>@Model.Course</dd></div>
+            <div><dt>Үлгерім көрсеткіші</dt><dd>@Model.GPA.ToString("0.00")</dd></div>
+            <div><dt>Телефон нөмірі</dt><dd>@Model.PhoneNumber</dd></div>
+        </dl>
+        @if (!string.IsNullOrWhiteSpace(Model.AboutMe))
+        {
+            <div class="about-block"><span>Өзім туралы</span><p>@Model.AboutMe</p></div>
+        }
+    </article>
+</div>

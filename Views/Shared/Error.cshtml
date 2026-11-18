@@ -1,0 +1,24 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Қате";
+}
+
+<h1 class="text-danger">Қате орын алды.</h1>
+<h2 class="text-danger">Сұрауыңызды өңдеу кезінде қате пайда болды.</h2>
+
+@if (Model.ShowRequestId)
+{
+    <p>
+        <strong>Сұрау идентификаторы:</strong> <code>@Model.RequestId</code>
+    </p>
+}
+
+<h3>Әзірлеу режимі</h3>
+<p>
+    <strong>Development</strong> ортасын қоссаңыз, орын алған қате туралы толығырақ ақпарат көрсетіледі.
+</p>
+<p>
+    <strong>Жарияланған қолданбаларда Development ортасын қоспаңыз.</strong>
+    Әйтпесе, қате туралы құпия ақпарат пайдаланушыларға көрінуі мүмкін.
+    Жергілікті жөндеу үшін <strong>ASPNETCORE_ENVIRONMENT</strong> ортаның айнымалысын <strong>Development</strong> мәніне орнатып, қолданбаны қайта іске қосыңыз.
+</p>

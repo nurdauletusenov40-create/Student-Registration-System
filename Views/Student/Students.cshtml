@@ -1,0 +1,53 @@
+@model IReadOnlyList<Student>
+@{
+    ViewData["Title"] = "Тіркелген студенттер";
+}
+
+<div class="students-page container">
+    <div class="students-heading">
+        <div><span class="eyebrow dark">Студенттер тізімі</span><h1>Тіркелген студенттер</h1><p>Осы қолданба іске қосылғаннан бері тіркелген студенттердің профилі.</p></div>
+        <a asp-controller="Student" asp-action="Index" class="btn btn-primary btn-register">+ Студентті тіркеу</a>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success success-alert" role="alert">
+            <span class="success-check">✓</span>
+            <div><strong>Тіркелу сәтті аяқталды</strong><p>@TempData["SuccessMessage"]</p></div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Жабу"></button>
+        </div>
+    }
+
+    @if (!Model.Any())
+    {
+        <div class="empty-state">
+            <span>◎</span><h2>Әзірге тіркелген студент жоқ</h2>
+            <p>Студенттік профильді алғаш болып жасаңыз.</p>
+            <a asp-controller="Student" asp-action="Index" class="btn btn-primary">Профиль жасау</a>
+        </div>
+    }
+    else
+    {
+        <div class="student-grid">
+            @foreach (var student in Model)
+            {
+                <article class="student-card">
+                    <div class="student-card-top">
+                        <div class="avatar">@student.FirstName.Substring(0, 1)@student.LastName.Substring(0, 1)</div>
+                        <div><h2>@student.FirstName @student.LastName</h2><p>@student.Email</p></div>
+                    </div>
+                    <div class="student-facts">
+                        <div><span>Факультет</span><strong>@student.Faculty</strong></div>
+                        <div><span>Курс</span><strong>@student.Course</strong></div>
+                        <div><span>Үлгерім көрсеткіші</span><strong>@student.GPA.ToString("0.00")</strong></div>
+                    </div>
+                    @if (!string.IsNullOrWhiteSpace(student.AboutMe))
+                    {
+                        <p class="student-about">@student.AboutMe</p>
+                    }
+                    <a asp-controller="Student" asp-action="Details" asp-route-id="@student.Id" class="profile-link">Профильді көру <span>→</span></a>
+                </article>
+            }
+        </div>
+    }
+</div>
